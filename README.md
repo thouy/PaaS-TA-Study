@@ -169,14 +169,8 @@ ubuntu@ubuntu-virtual-machine:~/workspace$ sudo add-apt-repository "deb http://d
 	3. SSH 명령으로 Bosh VM에 접속합니다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace/paasta-5.0/deployment/bosh-deployment$ ssh jumpbox@10.0.1.6 -i jumpbox.key
-	
-	Unauthorized use is strictly prohibited. All access and activity
-is subject to logging and monitoring.
 	Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-54-generic x86_64)
 
-	 * Documentation:  https://help.ubuntu.com
-	 * Management:     https://landscape.canonical.com
-	 * Support:        https://ubuntu.com/advantage
 	Last login: Mon Feb 15 09:07:58 UTC 2021 from 10.0.1.1 on pts/0
 	Last login: Mon Feb 15 15:20:01 2021 from 10.0.1.1
 	bosh/0:~$
