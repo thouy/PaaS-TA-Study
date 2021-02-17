@@ -100,21 +100,21 @@
 	
 * Virtual Box 설치
 	1. IaaS 환경의 대안으로 활용할 Virtual Box를 설치합니다.
-	1. 아래의 명령을 이용하여 Virtual Box 설치를 위한 repository를 추가합니다.
+	2. 아래의 명령을 이용하여 Virtual Box 설치를 위한 repository를 추가합니다.
 	~~~sh
 ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 ubuntu@ubuntu-virtual-machine:~/workspace$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib" 
 	~~~
-	2. repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
+	3. repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt update
 	~~~
-	3. Virtual Box 6.0을 설치한다.
+	4. Virtual Box 6.0을 설치한다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt install virtualbox-6.0
 	~~~
-	4. 설치가 잘 되었는지 아래의 명령으로 확인합니다.
+	5. 설치가 잘 되었는지 아래의 명령으로 확인합니다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ VBoxManage --version
 	~~~
