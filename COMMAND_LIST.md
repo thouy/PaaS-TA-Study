@@ -121,3 +121,29 @@ $ cf bind-service APPNAME SERVICE_INSTANCE_NAME
 ~~~sh
 $ cf restage APPNAME
 ~~~
+## 14. 서비스 브로커 목록 조회 : service-brokers
+~~~sh
+$ cf service-brokers
+~~~
+## 15. 서비스 브로커 등록하기 : create-service-broker
+~~~sh
+$ cf create-service-broker SERVICE_NAME USER_ID USER_PW SERVICE_URL   # 등록되면 marketplace에서 조회됨
+~~~
+
+# Service Broker
+| Service Broker API | Routes (API)                                   | Method | 설명                                                       |
+| ------------------ | ---------------------------------------------- | ------ | ---------------------------------------------------------- |
+| catalog            | /v2/catalog                                    | GET    | 서비스 및 서비스 Plan 정보 조회                            |
+| provision          | /v2/service_instances/:id                      | PUT    | 서비스를 위한 인스턴스 생성                                |
+| deprovision        | /v2/service_instances/:id                      | DELETE | 서비스 인스턴스 삭제                                       |
+| updateprovision    | /v2/service_instances/:id                      | PATCH  | 서비스 인스턴스 Plan을 수정                                |
+| bind               | /v2/service_instances/:id/service_bindings/:id | PUT    | 서비스 사용에 관련된 사용자 생성 및 권한 등 설정 정보 생성 |
+| unbind             | /v2/service_instances/:id/service_bindings/:id | DELETE | 서비스 사용 설정 정보 삭제                                 |
+
+# Buildpack
+* 애플리케이션 구동이 필요한 환경(런타임, 프레임워크 등)을 조립하고 드롭릿을 구성하는 스크립트의 모음
+* 검출 : 배포된 애플리케이션의 런타임 환경 구성 방법을 빌드팩이 아는지 여부를 확인하는 기능
+* 컴파일 : 실질적으로 드롭릿을 빌드하는 빌드팩의 핵심기능
+* 릴리즈 : 애플리케이션 실행방법에 대한 정보를 플랫폼에 응답해주는 기능
+* 패키지 : 빌드팩을 하나의 압축파일로 만드는 기능 혹은 압축파일 자체
+* cf로 앱을 푸시할 때 -b 옵션으로 빌드팩을 지정할 수 있음. 원격지에 있는 빌드팩도 URL 값으로 지정 가능 (ex. Git URL 등)
