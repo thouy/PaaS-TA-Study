@@ -1,7 +1,7 @@
 # Cloud Foundry
 * 오픈소스 기반 멀티 클라우드 애플리케이션 플랫폼
 * Clound Foundry 재단에 의해 관리되고 있습니다.
-* Diego라는 시스템으로 앱 컨테이너를 관리합니다.
+* Diego라는 시스템으로 앱 컨테이너를 관리합니다. (https://docs.cloudfoundry.org/concepts/diego/diego-architecture.html)
 * BOSH를 설치하면 내부적으로 Cloud Foundry가 배포됩니다.
 
 # BOSH
