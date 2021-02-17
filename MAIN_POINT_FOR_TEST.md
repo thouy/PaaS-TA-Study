@@ -1,12 +1,12 @@
 # BOSH Concept
 ## 1. BOSH Director (혹은 BOSH VM)
-CLI를 통해 명령을 받으면 IaaS 환경에 VM을 기반으로 작업을 수행합니다.
+CLI를 통해 명령을 받으면 IaaS 환경에 VM을 기반으로 작업을 수행합니다. VM을 생성하고, 각 BOSH Agent로부터 응답을 수신 받으며 VM들을 총괄하는 핵심 요소 입니다.
 ## 2. BOSH Agent
 Bosh가 설치한 VM마다 배치된 Agent. 각 VM 시스템의 오류를 감지하여 경고하거나 자동으로 문제를 복구하는 역할을 합니다.
 ## 3. BOSH Release
 VM에 설치할 소프트웨어 패키지, 설정 템플릿, 프로세스 시작/종료 스크립트를 포함합니다. (주로 소프트웨어 패키지)
 ## 4. BOSH Stemcell
-VM에 설치할 OS 이미지 및 BOSH Agent를 포함합니다. (주로 OS 이미지)
+VM에 설치할 OS 이미지 및 BOSH Agent를 포함합니다. (주로 OS 이미지) 각 IaaS 벤더별로 제공됩니다.
 ## 5. BOSH 배포 Manifest 파일
 VM 배포에 필요한 정보를 정의한 YAML 포맷의 파일. (적용할 Stemcell 및 Release 정보, VM의 용량, 네트워크 구성정보 등..)
 

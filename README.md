@@ -1,24 +1,26 @@
 # Cloud Foundry
 * 오픈소스 기반 멀티 클라우드 애플리케이션 플랫폼
 * Clound Foundry 재단에 의해 관리되고 있습니다.
+* Diego라는 시스템으로 앱 컨테이너를 관리합니다.
+* BOSH를 설치하면 내부적으로 Cloud Foundry가 배포됩니다.
 
-# Bosh
-* IaaS 환경에 가상머신(VM) 들을 설치하고 관리하는 도구
+# BOSH
+* IaaS 환경에 가상머신(VM) 들을 설치하고 관리하는 툴
 * Cloud Foundry 플랫폼 기반에서 애플리케이션을 다수의 VM으로 배포할 수 있는 배포 도구
 * 다양한 벤더의 laaS 인프라를 지원합니다. (Amazon EC2, OpenStack, vSphere 등)
 * 구성요소
 	1. BOSH CLI : BOSH Director와 상호작용하는 Command Line Interface
-	2. BOSH Director (혹은 BOSH VM) : CLI를 통해 명령을 받으면 IaaS 환경에 VM을 기반으로 작업을 수행합니다.
-	3. BOSH Agent : Bosh가 설치한 VM마다 배치된 Agent. 각 VM 시스템의 오류를 감지하여 경고하거나 자동으로 문제를 복구하는 역할을 합니다.
+	2. BOSH Director (혹은 BOSH VM) : CLI를 통해 명령을 받으면 IaaS 환경에 VM을 기반으로 작업을 수행합니다. VM을 생성하고, 각 BOSH Agent로부터 응답을 수신 받으며 VM들을 총괄하는 핵심 요소 입니다.
+	3. BOSH Agent : BOSH가 설치한 VM마다 배치된 Agent. 각 VM 시스템의 오류를 감지하여 경고하거나 자동으로 문제를 복구하는 역할을 합니다.
 	4. BOSH Release : VM에 설치할 소프트웨어 패키지, 설정 템플릿, 프로세스 시작/종료 스크립트를 포함합니다. (주로 소프트웨어 패키지)
-	5. BOSH Stemcell : VM에 설치할 OS 이미지 및 BOSH Agent를 포함합니다. (주로 OS 이미지)
+	5. BOSH Stemcell : VM에 설치할 OS 이미지 및 BOSH Agent를 포함합니다. (주로 OS 이미지) 각 IaaS 벤더별로 제공됩니다.
 	6. BOSH 배포 Manifest 파일 : VM 배포에 필요한 정보를 정의한 YAML 포맷의 파일. (적용할 Stemcell 및 Release 정보, VM의 용량, 네트워크 구성정보 등..)
 
 # 실습환경 구성
 * 실습환경에 대한 설명
-	1. 본래는 IaaS 기반에 Bosh VM을 포함한 다수의 VM이 있고, Bosh-cli를 통해 Bosh VM(Director) 으로 명령을 실행하면서 운영하는 구조 입니다.
-	2. 실습환경에서는 IaaS를 통해 수 개의 VM을 운영하는 것은 비용적인 부담이 따르기 때문에 로컬 환경에서의 실습을 위한 Bosh-lite를 활용합니다. (Bosh-lite는 실습환경을 위한 프로그램)
-	3. Bosh-lite를 이용하여 하나의 서버에 IaaS 환경까지 구축할 수 있습니다.
+	1. 본래는 IaaS 기반에 BOSH VM을 포함한 다수의 VM이 있고, Bosh-cli를 통해 BOSH VM(Director) 으로 명령을 실행하면서 운영하는 구조 입니다.
+	2. 실습환경에서는 IaaS를 통해 수 개의 VM을 운영하는 것은 비용적인 부담이 따르기 때문에 로컬 환경에서의 실습을 위한 BOSH-lite를 활용합니다. (BOSH-lite는 실습환경을 위한 프로그램)
+	3. BOSH-lite를 이용하여 하나의 서버에 IaaS 환경까지 구축할 수 있습니다.
 	4. Bosh-cli와 Virtual Box를 설치한 후, Bosh-cli를 통해 Bosh-lite를 이용하여 Bosh VM을 생성합니다. 
 	5. Bosh-lite는 Bosh VM과 같은 역할을 수행하며, 컨테이너의 형태로 PaaS-TA를 배포합니다.
 * 사전 준비 사항
