@@ -153,7 +153,7 @@ $ cf create-service-broker SERVICE_NAME USER_ID USER_PW SERVICE_URL   # 등록�
 | unbind             | /v2/service_instances/:id/service_bindings/:id | DELETE | 서비스 사용 설정 정보 삭제                                 |
 
 # Buildpack
-* 애플리케이션 구동이 필요한 환경(런타임, 프레임워크 등)을 조립하고 드롭릿을 구성하는 스크립트의 모음
+* 애플리케이션 구동이 필요한 환경(런타임, 프레임워크 등)을 조립하고 Droplet을 구성하는 스크립트의 모음
 * 검출 : 배포된 애플리케이션의 런타임 환경 구성 방법을 빌드팩이 아는지 여부를 확인하는 기능
 * 컴파일 : 실질적으로 드롭릿을 빌드하는 빌드팩의 핵심기능
 * 릴리즈 : 애플리케이션 실행방법에 대한 정보를 플랫폼에 응답해주는 기능

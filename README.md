@@ -66,6 +66,26 @@
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo mv ./bosh /usr/local/bin/bosh
 	~~~
 	4. 완료되었으면 bosh가 잘 동작하는지 버전체크 명령 실행 (bosh -v)
+* Virtual Box 설치
+	1. IaaS 환경의 대안으로 활용할 Virtual Box를 설치합니다.
+	2. 아래의 명령을 이용하여 Virtual Box 설치를 위한 repository를 추가합니다.
+	~~~sh
+	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib" 
+	~~~
+	3. repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
+	~~~sh
+	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt update
+	~~~
+	4. Virtual Box 6.0을 설치한다.
+	~~~sh
+	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt install virtualbox-6.0
+	~~~
+	5. 설치가 잘 되었는지 아래의 명령으로 확인합니다.
+	~~~sh
+	ubuntu@ubuntu-virtual-machine:~/workspace$ VBoxManage --version
+	~~~
 * Bosh 설치 (Bosh Director 설치)
 	1. bosh create-env 명령어로 설치합니다.
 	2. 설치하게 되면 Virtual Box에 VM을 생성하여 해당 VM을 Bosh Director로 설정하게 됩니다.
@@ -100,27 +120,6 @@
         -v outbound_network_name='NatNetwork'
 	~~~
 	
-* Virtual Box 설치
-	1. IaaS 환경의 대안으로 활용할 Virtual Box를 설치합니다.
-	2. 아래의 명령을 이용하여 Virtual Box 설치를 위한 repository를 추가합니다.
-	~~~sh
-	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib" 
-	~~~
-	3. repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
-	~~~sh
-	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt update
-	~~~
-	4. Virtual Box 6.0을 설치한다.
-	~~~sh
-	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt install virtualbox-6.0
-	~~~
-	5. 설치가 잘 되었는지 아래의 명령으로 확인합니다.
-	~~~sh
-	ubuntu@ubuntu-virtual-machine:~/workspace$ VBoxManage --version
-	~~~
-
 # BOSH VM 설정 및 접속하기
 * BOSH VM에 로그인 하기
 	1. 설치한 BOSH VM에 별칭 및 인증정보를 미리 설정합니다.
@@ -411,7 +410,7 @@ Succeeded
 	~~~sh
 	cf env welcome-cf  #welcome-cf 앱의 정보를 조회합니다.
 	~~~
-* ssh : push한 앱의 인스턴스로 ssh 접속할 수 있는 명령어. -L 속성을 이용하여 로컬호스트의 특정 포트로 터널링(포트 포워딩)도 가능합니다.
+* ssh : push한 앱의 인스턴스로 ssh 접속할 수 있는 명령어. -L 속성을 이용하여 로컬호스트의 특정 포트로 터널링(포트 포워딩)도 가능합니다. 터널링을 설정하면 DB 접속 툴을 통해 로컬호스트로 DB에 접근할 수 있습니다.
 	~~~sh
 	cf ssh welcome-cf -L 9999:10.0.1.14:3306  # 원격지의 10.0.1.14:3306을 로컬호스트의 9999번 포트로 터널링을 시도합니다.
 	~~~
@@ -433,7 +432,7 @@ Succeeded
   | unbind             | /v2/service_instances/:id/service_bindings/:id | DELETE | 서비스 사용 설정 정보 삭제                                 |
 
 # Buildpack
-* 애플리케이션 구동이 필요한 환경(런타임, 프레임워크 등)을 조립하고 드롭릿을 구성하는 스크립트의 모음
+* 애플리케이션 구동이 필요한 환경(런타임, 프레임워크 등)을 조립하고 Droplet을 구성하는 스크립트의 모음
 * 검출 : 배포된 애플리케이션의 런타임 환경 구성 방법을 빌드팩이 아는지 여부를 확인하는 기능
 * 컴파일 : 실질적으로 드롭릿을 빌드하는 빌드팩의 핵심기능
 * 릴리즈 : 애플리케이션 실행방법에 대한 정보를 플랫폼에 응답해주는 기능
