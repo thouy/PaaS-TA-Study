@@ -102,7 +102,7 @@ $ bosh -e micro-bosh -d paasta ssh VM_인스턴스명
 # Cloud Foundry CLI command
 ## 1. cf에 로그인 하기
 ~~~sh
-$ cf login --skip-ssl-validation
+$ cf login --skip-ssl-validation  # API Endpoint는 PaaS-TA 설치시 설정했던 system_domain값 앞에 https://api.를 붙여서 입력합니다.
 ~~~
 ## 2. user, org, space 생성하기 : create-user, create-org, create-space
 ~~~sh
