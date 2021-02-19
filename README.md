@@ -21,8 +21,8 @@
 	1. 본래는 IaaS 기반에 BOSH VM을 포함한 다수의 VM이 있고, Bosh-cli를 통해 BOSH VM(Director) 으로 명령을 실행하면서 운영하는 구조 입니다.
 	2. 실습환경에서는 IaaS를 통해 수 개의 VM을 운영하는 것은 비용적인 부담이 따르기 때문에 로컬 환경에서의 실습을 위한 BOSH-lite를 활용합니다. (BOSH-lite는 실습환경을 위한 프로그램)
 	3. BOSH-lite를 이용하여 하나의 서버에 IaaS 환경까지 구축할 수 있습니다.
-	4. Bosh-cli와 Virtual Box를 설치한 후, Bosh-cli를 통해 Bosh-lite를 이용하여 Bosh VM을 생성합니다. 
-	5. Bosh-lite는 Bosh VM과 같은 역할을 수행하며, 컨테이너의 형태로 PaaS-TA를 배포합니다.
+	4. BOSH-cli와 Virtual Box를 설치한 후, Bosh-cli를 통해 Bosh-lite를 이용하여 BOSH VM을 생성합니다. 
+	5. BOSH-lite는 BOSH VM과 같은 역할을 수행하며, 컨테이너의 형태로 PaaS-TA를 배포합니다.
 * 사전 준비 사항
 	1. Ubuntu Desktop : SSH 접속이 가능해야 하므로 openssh-server가 설치되어 있어야 합니다.
 	~~~sh
@@ -52,8 +52,8 @@
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ mv bosh-lite paasta-5.0
 	~~~
-* Bosh CLI 설치
-	1. Bosh cli 다운로드
+* BOSH CLI 설치
+	1. BOSH cli 다운로드
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ curl -Lo ./bosh https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-6.1.0-linux-amd64
 	~~~
@@ -61,20 +61,20 @@
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ chmod +x ./bosh
 	~~~
-	3. bosh 명령을 바로 실행할 수 있도록 /usr/local/bin 디렉토리로 이동시킨다. 
+	3. bosh 명령을 바로 실행할 수 있도록 /usr/local/bin 디렉토리로 이동합니다. 
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo mv ./bosh /usr/local/bin/bosh
 	~~~
-	4. 완료되었으면 bosh가 잘 동작하는지 버전체크 명령 실행 (bosh -v)
+	4. 완료되었으면 bosh가 잘 동작하는지 버전체크 명령을 실행합니다. (bosh -v)
 * Virtual Box 설치
-	1. IaaS 환경의 대안으로 활용할 Virtual Box를 설치합니다.
+	1. IaaS 환경의 대안으로 활용하기 위해 Virtual Box를 설치합니다.
 	2. 아래의 명령을 이용하여 Virtual Box 설치를 위한 repository를 추가합니다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
 	ubuntu@ubuntu-virtual-machine:~/workspace$ wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib" 
 	~~~
-	3. repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
+	3. APT에 repository 추가후엔 반드시 apt update 명령으로 추가한 repository 정보를 반영해줍니다.
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ sudo apt update
 	~~~
@@ -86,7 +86,7 @@
 	~~~sh
 	ubuntu@ubuntu-virtual-machine:~/workspace$ VBoxManage --version
 	~~~
-* Bosh 설치 (Bosh Director 설치)
+* BOSH 설치 (Bosh Director 설치)
 	1. bosh create-env 명령어로 설치합니다.
 	2. 설치하게 되면 Virtual Box에 VM을 생성하여 해당 VM을 Bosh Director로 설정하게 됩니다.
 	3. Paas-TA 설치파일 다운로드 섹션에서 세팅된 paasta-5.0 디렉토리의 deployment/bosh-deployment 디렉토리에 IaaS 벤더별 bosh 설치 쉘 스크립트가 있습니다. (deploy-벤더명.sh 파일)

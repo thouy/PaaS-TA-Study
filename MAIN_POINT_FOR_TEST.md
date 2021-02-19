@@ -1,4 +1,18 @@
+# 클라우드 컴퓨팅
+* 컴퓨팅 리소스를 데이터센터에 대량으로 집적시킨 후, 개별 이용자가 요구하는 만큼 가상으로 분리하여 제공하는 서비스. 사용량에 비례하여 비용을 청구
+* 2020년 10대 전략 기술 트랜드 : 강화 엣지, 분산 클라우드, 자율 이동체, 실용적인 블록체인, AI보안, 초 자동화, 멀티 경험, 민주화, 휴먼 증강, 투명성과 추적성
+* 강화 엣지 : 사용자와 가까운 곳에 데이터, 저장소를 배치하여 정보를 처리하고 컨텐츠를 수집하는 엣지 컴퓨팅의 강화
+* 분산 클라우드 : 클라우드 제공업체 외부의 다른 위치에서 퍼블릭 클라우드를 제공. 소비자와 가장 가까운 곳에서 클라우드 제공
+
+# 클라우드 모델
+* IaaS : CPU나 하드웨어 등의 컴퓨팅 리소스(자원)을 가상화하여 제공하는 모델
+	* Hypervisor : OS 환경을 통째로 가상화
+	* Container : 하나의 호스트 OS를 각 컨테이너가 공유
+* PaaS : 기업의 애플리케이션 실행 환경 및 애플리케이션 개발 환경을 서비스로 제공하는 모델
+* SaaS : 소프트웨어를 필요한 만큼 서비스로 이용할 수 있도록 제공하는 형태
+
 # BOSH Concept
+
 ## 1. BOSH Director (혹은 BOSH VM)
 CLI를 통해 명령을 받으면 IaaS 환경에 VM을 기반으로 작업을 수행합니다. VM을 생성하고, 각 BOSH Agent로부터 응답을 수신 받으며 VM들을 총괄하는 핵심 요소 입니다.
 ## 2. BOSH Agent
@@ -75,7 +89,12 @@ $ bosh -e micro-bosh configs
 ~~~sh
 $ bosh -e micro-bosh stemcells
 ~~~
-## 10. PaaS-TA VM에 SSH로 접속하기
+## 10. VM 목록 조회 : vms
+~~~sh
+$ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 목록 조회
+$ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 목록 조회
+~~~
+## 11. PaaS-TA VM에 SSH로 접속하기
 ~~~sh
 $ bosh -e micro-bosh -d paasta ssh VM_인스턴스명
 ~~~
