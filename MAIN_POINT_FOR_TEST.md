@@ -53,7 +53,7 @@ $ bosh -e micro-bosh env
 ~~~sh
 $ bosh int creds.yml --path /jumpbox_ssh/private_key > jumpbox.key
 $ chmod 600 jumpbox.key
-$ ssh jumpbox@10.0.1.6 -i jumpbox.key
+$ ssh jumpbox@10.0.1.6 -i jumpbox.key  # fingerprint 갱신이 필요하다면 sudo 명령을 붙여 실행
 ~~~
 ## 5. BOSH VM에 cloud-config 적용하기 : update-cloud-config
 ~~~sh
@@ -74,6 +74,10 @@ $ bosh -e micro-bosh configs
 ## 9. BOSH VM에 적용된 stemcell 조회 : stemcells
 ~~~sh
 $ bosh -e micro-bosh stemcells
+~~~
+## 10. PaaS-TA VM에 SSH로 접속하기
+~~~sh
+$ bosh -e micro-bosh -d paasta ssh VM_인스턴스명
 ~~~
 
 # Cloud Foundry CLI command

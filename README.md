@@ -169,7 +169,7 @@
 	~~~
 	3. SSH 명령으로 Bosh VM에 접속합니다.
 	~~~sh
-	ubuntu@ubuntu-virtual-machine:~/workspace/paasta-5.0/deployment/bosh-deployment$ ssh jumpbox@10.0.1.6 -i jumpbox.key
+	ubuntu@ubuntu-virtual-machine:~/workspace/paasta-5.0/deployment/bosh-deployment$ ssh jumpbox@10.0.1.6 -i jumpbox.key   # fingerprint 갱신이 필요하다면 sudo 명령을 붙여 실행
 	Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-54-generic x86_64)
 
 	Last login: Mon Feb 15 09:07:58 UTC 2021 from 10.0.1.1 on pts/0
