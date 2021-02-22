@@ -59,18 +59,18 @@ export BOSH_CA_CERT=$(bosh int ./warden/creds.yml --path /director_ssl/ca)
 export BOSH_CLIENT=admin
 export BOSH_CLIENT_SECRET=$(bosh int ./warden/creds.yml --path /admin_password)
 ~~~
-## 3. BOSH VM 환경 및 상태 조회 : env (--details 속성을 주면 인증서 정보까지 조회 가능)
+## 4. BOSH VM 환경 및 상태 조회 : env (--details 속성을 주면 인증서 정보까지 조회 가능)
 ~~~sh
 $ bosh -e micro-bosh env
 ~~~
-## 4. BOSH VM에 SSH로 접속하기 : jumpbox 활용
+## 5. BOSH VM에 SSH로 접속하기 : jumpbox 활용
 ~~~sh
 $ bosh int creds.yml --path /jumpbox_ssh/private_key > jumpbox.key
 $ chmod 600 jumpbox.key
 $ ssh jumpbox@10.0.1.6 -i jumpbox.key  # fingerprint 갱신이 필요하다면 sudo 명령을 붙여 실행
 ~~~
 
-## 5. credhub 로그인 설정하기
+## 6. credhub 로그인 설정하기
 
 ~~~sh
 #!/usr/bin
@@ -80,39 +80,39 @@ export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret warden/cred
 export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca warden/creds.yml)
 ~~~
 
-## 6 credhub 로그인 하기
+## 7. credhub 로그인 하기
 
 ~~~sh
 $ credhub login -s https://10.0.1.6:8844 --skip-tls-validation  # URL은 BOSH VM의 IP주소 기준 https 프로토콜에 8844 포트로 지정합니다.
 $ credhub find  #credhub에 등록된 credential 목록을 조회합니다
 ~~~
 
-## 7. BOSH VM에 cloud-config 적용하기 : update-cloud-config
+## 8. BOSH VM에 cloud-config 적용하기 : update-cloud-config
 ~~~sh
 $ bosh -e micro-bosh update-cloud-config cloud-config.yml
 ~~~
-## 8. BOSH VM에 runtime-config 적용하기 : update-runtime-config
+## 9. BOSH VM에 runtime-config 적용하기 : update-runtime-config
 ~~~sh
 $ bosh -e micro-bosh update-runtime-config runtime-config.yml
 ~~~
-## 9. BOSH VM에 steamcell 적용하기 : upload-stemcell
+## 10. BOSH VM에 steamcell 적용하기 : upload-stemcell
 ~~~sh
 $ bosh -e micro-bosh upload-stemcell stemcell.tgz
 ~~~
-## 10. BOSH VM에 적용된 config 조회 : configs
+## 11. BOSH VM에 적용된 config 조회 : configs
 ~~~sh
 $ bosh -e micro-bosh configs
 ~~~
-## 11. BOSH VM에 적용된 stemcell 조회 : stemcells
+## 12. BOSH VM에 적용된 stemcell 조회 : stemcells
 ~~~sh
 $ bosh -e micro-bosh stemcells
 ~~~
-## 12. VM 목록 조회 : vms
+## 13. VM 목록 조회 : vms
 ~~~sh
-$ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 목록 조회
-$ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 목록 조회
+$ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 인스턴스목록 조회
+$ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 인스턴스 목록 조회
 ~~~
-## 13. PaaS-TA VM에 SSH로 접속하기
+## 14. PaaS-TA VM에 SSH로 접속하기
 ~~~sh
 $ bosh -e micro-bosh -d paasta ssh VM_인스턴스명
 ~~~
