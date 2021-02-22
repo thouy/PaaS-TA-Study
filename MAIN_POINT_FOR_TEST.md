@@ -69,32 +69,50 @@ $ bosh int creds.yml --path /jumpbox_ssh/private_key > jumpbox.key
 $ chmod 600 jumpbox.key
 $ ssh jumpbox@10.0.1.6 -i jumpbox.key  # fingerprint 갱신이 필요하다면 sudo 명령을 붙여 실행
 ~~~
-## 5. BOSH VM에 cloud-config 적용하기 : update-cloud-config
+
+## 5. credhub 로그인 설정하기
+
+~~~sh
+#!/usr/bin
+
+export CREDHUB_CLIENT=credhub-admin 
+export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret warden/creds.yml) 
+export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca warden/creds.yml)
+~~~
+
+## 6 credhub 로그인 하기
+
+~~~sh
+$ credhub login -s https://10.0.1.6:8844 --skip-tls-validation  # URL은 BOSH VM의 IP주소 기준 https 프로토콜에 8844 포트로 지정합니다.
+$ credhub find  #credhub에 등록된 credential 목록을 조회합니다
+~~~
+
+## 7. BOSH VM에 cloud-config 적용하기 : update-cloud-config
 ~~~sh
 $ bosh -e micro-bosh update-cloud-config cloud-config.yml
 ~~~
-## 6. BOSH VM에 runtime-config 적용하기 : update-runtime-config
+## 8. BOSH VM에 runtime-config 적용하기 : update-runtime-config
 ~~~sh
 $ bosh -e micro-bosh update-runtime-config runtime-config.yml
 ~~~
-## 7. BOSH VM에 steamcell 적용하기 : upload-stemcell
+## 9. BOSH VM에 steamcell 적용하기 : upload-stemcell
 ~~~sh
 $ bosh -e micro-bosh upload-stemcell stemcell.tgz
 ~~~
-## 8. BOSH VM에 적용된 config 조회 : configs
+## 10. BOSH VM에 적용된 config 조회 : configs
 ~~~sh
 $ bosh -e micro-bosh configs
 ~~~
-## 9. BOSH VM에 적용된 stemcell 조회 : stemcells
+## 11. BOSH VM에 적용된 stemcell 조회 : stemcells
 ~~~sh
 $ bosh -e micro-bosh stemcells
 ~~~
-## 10. VM 목록 조회 : vms
+## 12. VM 목록 조회 : vms
 ~~~sh
-$ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 목록 조회
 $ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 목록 조회
+$ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 목록 조회
 ~~~
-## 11. PaaS-TA VM에 SSH로 접속하기
+## 13. PaaS-TA VM에 SSH로 접속하기
 ~~~sh
 $ bosh -e micro-bosh -d paasta ssh VM_인스턴스명
 ~~~
@@ -119,9 +137,9 @@ $ cf set-space-role USERNAME ORGNAME SPACENAME ROLE # ROLE : SpaceManager, Space
 ~~~sh
 $ cf target -o ORGNAME -s SPACENAME
 ~~~
-## 5. 앱 푸시 : push (manifest.yml 파일 필수, -b 속성으로 커스텀 빌드팩 적용 가능)
+## 5. 앱 푸시 : push (manifest.yml 파일 필수)
 ~~~sh
-$ cf push
+$ cf push [-b 빌드팩명]   # 빌드팩은 로컬의 커스텀 빌드팩, http URL의 원격지에 있는 빌드백 지정이 모두 가능
 ~~~
 ## 6. 해당 space에 등록된 앱 목록 조회 : apps
 ~~~sh

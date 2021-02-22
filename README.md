@@ -321,15 +321,42 @@ Succeeded
 	~~~
 	2. inception 서버 재부팅 후에 명령이 동작하지 않는다면 ip route를 확인한 후 다시 추가하도록 합니다.
 * bosh 명령어 활용하기
-	1. Paas-TA 배포할 때 새로 생성된 VM 리스트 조회하기 (Bosh VM은 제외한 나머지 목록이 조회됨) : bosh -e micro-bosh -d paasta vms --vitals
-	2. PaaS-TA에서 인스턴스로 생성한 VM 리스트 조회하기 : bosh -e micro-bosh instances
-	3. Bosh VM의 환경 및 로그인 정보, 인증서 정보까지 조회하기 : bosh -e micro-bosh env --details
-	4. 업로드 한 stemcell 목록 조회하기 : bosh -e micro-bosh stemcells
-	5. Bosh VM에 올려진 release 목록 조회하기 : bosh -e micro-bosh releases
-	6. 최근에 사용했던 task 정보 조회하기 : bosh -e micro-bosh tasks --recent
-	7. lock이 걸린 task 정보 조회하기 : bosh -e micro-bosh locks
-	8. 동작중인 123번 task 취소하기 : bosh -e micro-bosh cancel-task 123
-	9. Paas-TA VM에 SSH로 접속하기 : bosh -e micro-bosh -d paasta ssh 인스턴스명/VM의 ID  (VM의 ID는 다중화 등으로 같은 이름의 인스턴스가 여러개 일 때 명시합니다)
+	1. Paas-TA 배포할 때 새로 생성된 VM 리스트 조회하기 (Bosh VM은 제외한 나머지 목록이 조회됨)
+	~~~sh
+	$ bosh -e micro-bosh -d paasta vms --vitals
+	~~~
+	2. PaaS-TA에서 인스턴스로 생성한 VM 리스트 조회하기
+	~~~sh
+	$ bosh -e micro-bosh instances
+	~~~
+	3. Bosh VM의 환경 및 로그인 정보, 인증서 정보까지 조회하기
+	~~~sh
+	$ bosh -e micro-bosh env --details
+	~~~
+	4. 업로드 한 stemcell 목록 조회하기
+	~~~sh
+	$ bosh -e micro-bosh stemcells
+	~~~
+	5. Bosh VM에 올려진 release 목록 조회하기
+	~~~sh
+	$ bosh -e micro-bosh releases
+	~~~
+	6. 최근에 사용했던 task 정보 조회하기
+	~~~sh
+	$ bosh -e micro-bosh tasks --recent
+	~~~
+	7. lock이 걸린 task 정보 조회하기
+	~~~sh
+	$ bosh -e micro-bosh locks
+	~~~
+	8. 동작중인 123번 task 취소하기
+	~~~sh
+	$ bosh -e micro-bosh cancel-task 123
+	~~~
+	9. Paas-TA VM에 SSH로 접속하기
+	~~~sh 
+	$ bosh -e micro-bosh -d paasta ssh 인스턴스명/VM의 ID  # VM의 ID는 다중화 등으로 같은 이름의 인스턴스가 여러개 일 때 명시합니다
+	~~~
 	10. 각 PaaS-TA VM의 로그 디렉토리 경로 : /var/vcap/sys/log 디렉토리
 
 # Cloud Foundary를 이용하여 PaaS-TA VM에 앱 배포하기
