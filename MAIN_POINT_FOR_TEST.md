@@ -109,7 +109,7 @@ $ bosh -e micro-bosh stemcells
 ~~~
 ## 13. VM 목록 조회 : vms
 ~~~sh
-$ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 인스턴스목록 조회
+$ bosh -e micro-bosh vms   # micro-bosh내의 모든 VM 인스턴스 목록 조회
 $ bosh -e micro-bosh -d paasta vms  # micro-bosh의 paasta에 속한 VM 인스턴스 목록 조회
 ~~~
 ## 14. PaaS-TA VM에 SSH로 접속하기
